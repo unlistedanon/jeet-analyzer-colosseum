@@ -51,7 +51,7 @@ That distinction is the point of Jeet Analyzer.
 
 12
 00:00:59,000 --> 00:01:07,000
-The current build exposes the same jobs, budgets, access ledger, and protected reports through a Telegram field interface.
+The Telegram bot reuses Jeet's jobs, budgets, access ledger, and protected reports.
 
 13
 00:01:07,000 --> 00:01:11,000

@@ -5,8 +5,8 @@
     "total_duration_seconds":  109,
     "speech_rate":  2,
     "proof":  {
-                  "python_tests":  155,
-                  "frontend_tests":  16
+                  "python_tests":  440,
+                  "frontend_tests":  44
               },
     "scenes":  [
                    {
@@ -81,7 +81,7 @@
                                         },
                                         {
                                             "duration_seconds":  8,
-                                            "text":  "The current build exposes the same jobs, budgets, access ledger, and protected reports through a Telegram field interface."
+                                            "text":  "The Telegram bot reuses Jeet\u0027s jobs, budgets, access ledger, and protected reports."
                                         },
                                         {
                                             "duration_seconds":  4,
