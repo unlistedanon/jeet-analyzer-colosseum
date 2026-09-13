@@ -1,12 +1,10 @@
 1
 00:00:00,000 --> 00:00:07,000
-Jeet Analyzer started with one really simple question:
-the jeet sold, but is he really out?
+Jeet started with one question: the jeet sold, but is he really out?
 
 2
 00:00:07,000 --> 00:00:14,000
-Most tools show that a wallet sold.
-That does not tell you what happened to the position afterward.
+This sprint turned that question into a field tool.
 
 3
 00:00:14,000 --> 00:00:19,000
@@ -53,13 +51,11 @@ That distinction is the point of Jeet Analyzer.
 
 12
 00:00:59,000 --> 00:01:07,000
-It checks inventory, transfers, re-entry, related-wallet evidence,
-and coverage instead of treating one sell as the end.
+The current build exposes the same jobs, budgets, access ledger, and protected reports through a Telegram field interface.
 
 13
 00:01:07,000 --> 00:01:11,000
-It also refuses to make claims
-the evidence cannot support.
+It does not create a second forensic engine or guess at ownership.
 
 14
 00:01:11,000 --> 00:01:15,000
@@ -77,18 +73,15 @@ Both were fixed and converted into regression tests.
 
 17
 00:01:28,000 --> 00:01:33,000
-The current build passes
-155 Python tests and 16 frontend tests.
+The public build passes 440 backend and 44 frontend tests.
 
 18
 00:01:33,000 --> 00:01:41,000
-The original case used about 520 estimated provider credits.
-This replay uses zero provider calls.
+Telegram and payment paths passed the mocked A–Q rehearsal. Production stays OFF, and this replay uses zero provider calls.
 
 19
 00:01:41,000 --> 00:01:46,000
-The jeet sold. He really was out.
-Then he came back.
+He sold. He was out. Then he came back.
 
 20
 00:01:46,000 --> 00:01:49,000
