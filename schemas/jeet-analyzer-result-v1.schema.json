@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jeet-analyzer.local/schemas/jeet-analyzer-result-v1.schema.json",
+  "title": "Jeet Analyzer Result v1",
+  "type": "object",
+  "required": [
+    "schema",
+    "schema_version",
+    "token",
+    "mint",
+    "seed_wallet",
+    "historical_exit_status",
+    "current_wallet_status",
+    "cluster_status",
+    "current_inventory",
+    "sales",
+    "buys_reacquisitions",
+    "proceeds",
+    "wallet_relationships",
+    "shared_funders",
+    "excluded_infrastructure",
+    "unresolved_evidence",
+    "provider_coverage",
+    "request_telemetry",
+    "progress",
+    "evidence_receipts",
+    "common_control"
+  ],
+  "properties": {
+    "schema": {"const": "jeet-analyzer.result.v1"},
+    "schema_version": {"const": "1.0.0"},
+    "token": {"type": "object"},
+    "mint": {"type": "string"},
+    "seed_wallet": {"type": "string"},
+    "historical_exit_status": {"$ref": "#/$defs/lifecycleStatus"},
+    "current_wallet_status": {"$ref": "#/$defs/lifecycleStatus"},
+    "cluster_status": {"enum": ["VERIFIED_OUT", "NOT_OUT", "INSUFFICIENT_DATA", "UNRESOLVED"]},
+    "target_cluster_status": {"enum": ["VERIFIED_OUT", "NOT_OUT", "INSUFFICIENT_DATA", "UNRESOLVED"]},
+    "relationship_status": {"enum": ["RESOLVED_WITHIN_SCOPE", "UNRESOLVED", "INSUFFICIENT_DATA"]},
+    "current_inventory": {"type": "object"},
+    "sales": {
+      "type": "object",
+      "properties": {
+        "count": {"type": "integer", "minimum": 0},
+        "target_token_sold_raw": {"type": "integer", "minimum": 0},
+        "amount_known": {"type": "boolean"},
+        "count_known": {"type": "boolean"},
+        "coverage_complete": {"type": "boolean"},
+        "coverage_scope": {"type": "string"},
+        "coverage_limitation": {"type": ["string", "null"]}
+      }
+    },
+    "buys_reacquisitions": {"type": "object"},
+    "proceeds": {"type": "object"},
+    "wallet_relationships": {"type": "array"},
+    "shared_funders": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/sharedFunderRelationship"}
+    },
+    "excluded_infrastructure": {"type": "array"},
+    "unresolved_evidence": {"type": "array"},
+    "provider_coverage": {
+      "type": "object",
+      "required": ["complete", "requests"],
+      "properties": {
+        "complete": {"type": "boolean"},
+        "seed_wallet_complete": {"type": "boolean"},
+        "downstream_complete": {"type": "boolean"},
+        "termination_reason": {"type": ["string", "null"]},
+        "optional_mint_enrichment": {
+          "type": "object",
+          "required": ["attempted", "required_for_conclusion", "complete", "skipped_reason"],
+          "properties": {
+            "attempted": {"type": "boolean"},
+            "required_for_conclusion": {"type": "boolean"},
+            "complete": {"type": ["boolean", "null"]},
+            "skipped_reason": {"type": ["string", "null"]}
+          }
+        },
+        "seed_wallet_history": {"$ref": "#/$defs/providerRequest"},
+        "requests": {"type": "array", "items": {"$ref": "#/$defs/providerRequest"}}
+      }
+    },
+    "request_telemetry": {"$ref": "#/$defs/requestTelemetry"},
+    "progress": {
+      "type": "object",
+      "required": ["phases", "events"],
+      "properties": {
+        "phases": {"type": "object"},
+        "events": {"type": "array", "items": {"$ref": "#/$defs/progressEvent"}}
+      }
+    },
+    "evidence_receipts": {"type": "object"},
+    "common_control": {"const": "NOT_PROVEN"}
+  },
+  "$defs": {
+    "requestTelemetry": {
+      "type": "object",
+      "required": [
+        "total_provider_requests", "rpc_requests", "das_requests",
+        "rpc_requests_by_method", "das_requests_by_method",
+        "cache_hits", "cache_misses", "cache_hits_by_namespace", "cache_misses_by_namespace",
+        "provider_requests_avoided", "duplicate_evidence_observations",
+        "wallet_traversals_suppressed", "deduplicated_skipped_requests",
+        "deduplicated_skipped_requests_deprecated",
+        "retry_attempts", "wallets_traversed", "signatures_examined",
+        "transactions_fetched", "pages_fetched", "budget_limits",
+        "estimated_provider_credits", "estimated_provider_credits_by_method",
+        "estimated_provider_credit_ceiling", "estimated_provider_credit_cost_is_authoritative",
+        "estimated_provider_credit_model",
+        "terminated_by_budget", "termination_reason"
+      ],
+      "properties": {
+        "total_provider_requests": {"type": "integer", "minimum": 0},
+        "rpc_requests": {"type": "integer", "minimum": 0},
+        "das_requests": {"type": "integer", "minimum": 0},
+        "rpc_requests_by_method": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "das_requests_by_method": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "cache_hits": {"type": "integer", "minimum": 0},
+        "cache_misses": {"type": "integer", "minimum": 0},
+        "cache_hits_by_namespace": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "cache_misses_by_namespace": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "provider_requests_avoided": {"type": "integer", "minimum": 0},
+        "duplicate_evidence_observations": {"type": "integer", "minimum": 0},
+        "wallet_traversals_suppressed": {"type": "integer", "minimum": 0},
+        "deduplicated_skipped_requests": {
+          "type": "integer",
+          "minimum": 0,
+          "deprecated": true,
+          "description": "Deprecated compatibility aggregate; do not interpret as avoided provider requests."
+        },
+        "deduplicated_skipped_requests_deprecated": {"const": true},
+        "retry_attempts": {"type": "integer", "minimum": 0},
+        "wallets_traversed": {"type": "integer", "minimum": 0},
+        "signatures_examined": {"type": "integer", "minimum": 0},
+        "transactions_fetched": {"type": "integer", "minimum": 0},
+        "pages_fetched": {"type": "integer", "minimum": 0},
+        "estimated_provider_credits": {"type": "integer", "minimum": 0, "maximum": 60000},
+        "estimated_provider_credits_by_method": {
+          "type": "object",
+          "additionalProperties": {"type": "integer", "minimum": 0}
+        },
+        "estimated_provider_credit_ceiling": {"type": "integer", "minimum": 1, "maximum": 60000},
+        "estimated_provider_credit_cost_is_authoritative": {"const": false},
+        "estimated_provider_credit_model": {"type": "string"},
+        "budget_limits": {
+          "type": "object",
+          "required": ["max_rpc_requests", "max_signatures", "max_transactions", "max_estimated_provider_credits"],
+          "properties": {
+            "max_rpc_requests": {"type": "integer", "minimum": 1},
+            "max_signatures": {"type": "integer", "minimum": 1},
+            "max_transactions": {"type": "integer", "minimum": 1},
+            "max_estimated_provider_credits": {"type": "integer", "minimum": 1, "maximum": 60000}
+          }
+        },
+        "terminated_by_budget": {"type": ["string", "null"]},
+        "termination_reason": {"type": ["string", "null"]},
+        "provider_credit_cost": {"type": ["number", "null"]},
+        "provider_credit_cost_note": {"type": "string"}
+      }
+    },
+    "lifecycleStatus": {
+      "enum": ["VERIFIED_OUT", "NOT_OUT", "RE_ENTERED", "INSUFFICIENT_DATA", "UNRESOLVED"]
+    },
+    "sharedFunderRelationship": {
+      "type": "object",
+      "required": [
+        "funder", "recipients", "relationship_type", "classification",
+        "relationship_scope", "recipient_pairs", "supporting_transfers",
+        "common_control", "reason"
+      ],
+      "properties": {
+        "funder": {"type": "string"},
+        "recipients": {
+          "type": "array",
+          "minItems": 2,
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        },
+        "relationship_type": {"const": "THIRD_PARTY_SHARED_FUNDER"},
+        "classification": {"const": "SHARED_FUNDER"},
+        "relationship_scope": {"const": "RECIPIENT_TO_RECIPIENT_VIA_THIRD_PARTY"},
+        "recipient_pairs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/sharedFunderRecipientPair"}
+        },
+        "supporting_transfers": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"$ref": "#/$defs/directSignedSolFundingEvidence"}
+        },
+        "common_control": {"const": "NOT_PROVEN"},
+        "reason": {"type": "string"}
+      }
+    },
+    "sharedFunderRecipientPair": {
+      "type": "object",
+      "required": [
+        "wallet_a", "wallet_b", "third_party_funder", "relationship_type",
+        "classification", "supporting_signatures", "common_control", "reason"
+      ],
+      "properties": {
+        "wallet_a": {"type": "string"},
+        "wallet_b": {"type": "string"},
+        "third_party_funder": {"type": "string"},
+        "relationship_type": {"const": "THIRD_PARTY_SHARED_FUNDER"},
+        "classification": {"const": "SHARED_FUNDER"},
+        "supporting_signatures": {
+          "type": "array",
+          "minItems": 2,
+          "items": {"type": "string"}
+        },
+        "common_control": {"const": "NOT_PROVEN"},
+        "reason": {"type": "string"}
+      }
+    },
+    "directSignedSolFundingEvidence": {
+      "type": "object",
+      "required": [
+        "source", "destination", "asset", "amount_raw", "signature",
+        "timestamp", "block_time", "relationship_type", "classification",
+        "relationship_context", "source_signed", "source_paid_fee",
+        "market_context", "common_control"
+      ],
+      "properties": {
+        "source": {"type": "string"},
+        "destination": {"type": "string"},
+        "asset": {"const": "SOL"},
+        "amount_raw": {"type": "integer", "minimum": 1},
+        "signature": {"type": "string"},
+        "timestamp": {"type": "string"},
+        "block_time": {"type": "integer", "minimum": 1},
+        "relationship_type": {"const": "PLAIN_DIRECT_SOL_TRANSFER"},
+        "classification": {"const": "DIRECT_SIGNED_SOL_FUNDING"},
+        "relationship_context": {"const": "MULTI_RECIPIENT_FUNDER"},
+        "source_signed": {"const": true},
+        "source_paid_fee": {"const": true},
+        "market_context": {"const": false},
+        "common_control": {"const": "NOT_PROVEN"}
+      }
+    },
+    "providerRequest": {
+      "type": "object",
+      "required": ["complete", "retry_count", "terminal_failure_reason", "failure_category"],
+      "properties": {
+        "complete": {"type": "boolean"},
+        "retry_count": {"type": "integer", "minimum": 0},
+        "terminal_failure_reason": {"type": ["string", "null"]},
+        "failure_category": {"type": ["string", "null"]}
+      }
+    },
+    "progressEvent": {
+      "type": "object",
+      "required": ["sequence", "timestamp", "phase", "state", "message"],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 1},
+        "timestamp": {"type": "string"},
+        "phase": {
+          "enum": [
+            "TOKEN_RESOLUTION", "SELLER_ANALYSIS", "WALLET_HISTORY",
+            "TRANSACTION_CLASSIFICATION", "RELATIONSHIP_GRAPH", "FUNDING_ANCESTRY",
+            "RELATED_INVENTORY", "CLUSTER_CONCLUSION", "RECEIPT_FINALIZATION"
+          ]
+        },
+        "state": {"enum": ["pending", "running", "complete", "incomplete", "error"]},
+        "message": {"type": "string"},
+        "count": {"type": "integer"},
+        "progress": {"type": "object"},
+        "metadata": {"type": "object"}
+      }
+    }
+  }
+}

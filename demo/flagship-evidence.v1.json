@@ -1,0 +1,208 @@
+{
+  "schema": "jeet-analyzer.public-evidence.v1",
+  "token": {
+    "label": "[REDACTED TOKEN]",
+    "decimals": 6
+  },
+  "primary_wallet": "Wallet A",
+  "material_threshold_raw": 1,
+  "historical_exit_evidence": {
+    "transaction": "TX-003",
+    "timestamp": "2026-08-29T01:15:00Z",
+    "event_type": "SELL",
+    "balance_before_raw": 7521892705710,
+    "balance_after_raw": 0
+  },
+  "accounting_evidence": {
+    "confirmed_buy_total_raw": 9960839007024,
+    "confirmed_sold_raw": 7666267453718,
+    "fresh_current_inventory_raw": 5974478422911,
+    "market_settlement_transfers_excluded": {
+      "count": 38,
+      "amount_raw": 9960839007024
+    },
+    "target_token_transfers": [],
+    "secondary_wallet_target_increases": [],
+    "burns": []
+  },
+  "evidence_timeline": [
+    {
+      "transaction": "TX-001",
+      "timestamp": "2026-08-20T05:56:27Z",
+      "event_type": "SELL",
+      "amount_raw": 144374748008
+    },
+    {
+      "transaction": "TX-003",
+      "timestamp": "2026-08-29T01:15:00Z",
+      "event_type": "SELL",
+      "amount_raw": 7521892705710
+    },
+    {
+      "transaction": "TX-004",
+      "timestamp": "2026-08-29T14:25:08Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 1926809500766
+    },
+    {
+      "transaction": "TX-006",
+      "timestamp": "2026-08-29T14:27:56Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 1872015512595
+    },
+    {
+      "transaction": "TX-007",
+      "timestamp": "2026-08-29T15:48:18Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 916179084512
+    },
+    {
+      "transaction": "TX-008",
+      "timestamp": "2026-08-29T17:03:18Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 127228787664
+    },
+    {
+      "transaction": "TX-009",
+      "timestamp": "2026-08-29T18:11:58Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 121045146208
+    },
+    {
+      "transaction": "TX-011",
+      "timestamp": "2026-08-29T20:14:45Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 318353097179
+    },
+    {
+      "transaction": "TX-013",
+      "timestamp": "2026-08-29T20:56:01Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 135016222939
+    },
+    {
+      "transaction": "TX-014",
+      "timestamp": "2026-08-29T21:14:46Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 350257753367
+    },
+    {
+      "transaction": "TX-016",
+      "timestamp": "2026-08-29T21:44:15Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 95075722107
+    },
+    {
+      "transaction": "TX-017",
+      "timestamp": "2026-08-30T04:08:16Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 69439815772
+    },
+    {
+      "transaction": "TX-018",
+      "timestamp": "2026-08-30T04:11:09Z",
+      "event_type": "POST_EXIT_BUY",
+      "amount_raw": 43057779802
+    }
+  ],
+  "related_wallet_inventory": [
+    {"wallet": "Wallet B", "depth": 1, "current_target_token_balance_raw": 0},
+    {"wallet": "Wallet C", "depth": 1, "current_target_token_balance_raw": 0},
+    {"wallet": "Wallet D", "depth": 1, "current_target_token_balance_raw": 0},
+    {"wallet": "Wallet E", "depth": 1, "current_target_token_balance_raw": 0},
+    {"wallet": "Wallet F", "depth": 1, "current_target_token_balance_raw": 0}
+  ],
+  "relationship_evidence": [
+    {
+      "transaction": "TX-002",
+      "timestamp": "2026-08-20T19:30:11Z",
+      "source": "Wallet B",
+      "destination": "Wallet A",
+      "relationship_type": "DIRECT_TOKEN_TRANSFER",
+      "relationship_context": null,
+      "asset": "OTHER_ASSET",
+      "amount_raw": 1000000000000000,
+      "source_signed": null,
+      "source_paid_fee": null,
+      "market_context": null,
+      "common_control": "NOT_PROVEN"
+    },
+    {
+      "transaction": "TX-005",
+      "timestamp": "2026-08-29T14:25:09Z",
+      "source": "Wallet C",
+      "destination": "Wallet A",
+      "relationship_type": "PLAIN_DIRECT_SOL_TRANSFER",
+      "relationship_context": "DIRECT_SIGNED_SOL_FUNDING",
+      "asset": "SOL",
+      "amount_raw": 1,
+      "source_signed": true,
+      "source_paid_fee": true,
+      "market_context": false,
+      "common_control": "NOT_PROVEN"
+    },
+    {
+      "transaction": "TX-010",
+      "timestamp": "2026-08-29T18:36:23Z",
+      "source": "Wallet D",
+      "destination": "Wallet A",
+      "relationship_type": "PLAIN_DIRECT_SOL_TRANSFER",
+      "relationship_context": "DIRECT_SIGNED_SOL_FUNDING",
+      "asset": "SOL",
+      "amount_raw": 1,
+      "source_signed": true,
+      "source_paid_fee": true,
+      "market_context": false,
+      "common_control": "NOT_PROVEN"
+    },
+    {
+      "transaction": "TX-012",
+      "timestamp": "2026-08-29T20:14:59Z",
+      "source": "Wallet E",
+      "destination": "Wallet A",
+      "relationship_type": "PLAIN_DIRECT_SOL_TRANSFER",
+      "relationship_context": "DIRECT_SIGNED_SOL_FUNDING",
+      "asset": "SOL",
+      "amount_raw": 1,
+      "source_signed": true,
+      "source_paid_fee": true,
+      "market_context": false,
+      "common_control": "NOT_PROVEN"
+    },
+    {
+      "transaction": "TX-015",
+      "timestamp": "2026-08-29T21:42:20Z",
+      "source": "Wallet F",
+      "destination": "Wallet A",
+      "relationship_type": "PLAIN_DIRECT_SOL_TRANSFER",
+      "relationship_context": "DIRECT_SIGNED_SOL_FUNDING",
+      "asset": "SOL",
+      "amount_raw": 1,
+      "source_signed": true,
+      "source_paid_fee": true,
+      "market_context": false,
+      "common_control": "NOT_PROVEN"
+    }
+  ],
+  "coverage": {
+    "seed_wallet_complete": true,
+    "seed_scope": "Indexed wallet and owned token-account history",
+    "seed_limitation": "Complete under the indexed-provider contract; not independently audited against every Solana block.",
+    "downstream_complete": false,
+    "downstream_limitation": "Relationship expansion stopped at the bounded transaction ceiling.",
+    "terminated_by_budget": "max_transactions",
+    "unresolved_evidence_count": 351
+  },
+  "original_live_cost": {
+    "estimated_helius_credits": 520,
+    "hard_estimated_credit_ceiling": 900,
+    "cost_is_estimated": true
+  },
+  "redaction": {
+    "token_identity": "REDACTED",
+    "wallets": "ALIASED",
+    "transactions": "ALIASED",
+    "explorer_urls": "OMITTED",
+    "metadata_and_social_identity": "OMITTED"
+  }
+}

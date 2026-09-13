@@ -1,0 +1,82 @@
+{
+  "schema": "jeet-analyzer.week1-video.v1",
+  "title": "Jeet Analyzer Eternal Week 1",
+  "final_card": "SELL DOES NOT NECESSARILY MEAN EXIT.",
+  "total_duration_seconds": 109,
+  "speech_rate": 2,
+  "proof": {
+    "python_tests": 155,
+    "frontend_tests": 16
+  },
+  "scenes": [
+    {
+      "id": "question",
+      "kind": "intro",
+      "duration_seconds": 14,
+      "captions": [
+        {"duration_seconds": 7, "text": "Jeet Analyzer started with one really simple question:\nthe jeet sold, but is he really out?"},
+        {"duration_seconds": 7, "text": "Most tools show that a wallet sold.\nThat does not tell you what happened to the position afterward."}
+      ]
+    },
+    {
+      "id": "lifecycle",
+      "kind": "lifecycle",
+      "duration_seconds": 21,
+      "captions": [
+        {"duration_seconds": 5, "text": "So I built Jeet to reconstruct\nthe wallet's actual token lifecycle."},
+        {"duration_seconds": 4, "text": "Here is a real Solana case\nI anonymized for the demo."},
+        {"duration_seconds": 6, "text": "Wallet A sold about 7.52 million tokens.\nIts balance actually hit zero."},
+        {"duration_seconds": 6, "text": "At that point, Jeet could defensibly\nclassify the wallet as VERIFIED OUT."}
+      ]
+    },
+    {
+      "id": "reentry",
+      "kind": "conclusion",
+      "duration_seconds": 20,
+      "captions": [
+        {"duration_seconds": 4, "text": "But that was not the end of the story."},
+        {"duration_seconds": 7, "text": "Jeet continued following the lifecycle and found\nWallet A later bought back almost 5.97 million tokens."},
+        {"duration_seconds": 4, "text": "The historical answer was true:\nthe wallet was out."},
+        {"duration_seconds": 5, "text": "The current answer is different:\nRE-ENTERED. NOT OUT."}
+      ]
+    },
+    {
+      "id": "evidence",
+      "kind": "evidence",
+      "duration_seconds": 16,
+      "captions": [
+        {"duration_seconds": 4, "text": "That distinction is the point of Jeet Analyzer."},
+        {"duration_seconds": 8, "text": "It checks inventory, transfers, re-entry, related-wallet evidence,\nand coverage instead of treating one sell as the end."},
+        {"duration_seconds": 4, "text": "It also refuses to make claims\nthe evidence cannot support."}
+      ]
+    },
+    {
+      "id": "honesty",
+      "kind": "honesty",
+      "duration_seconds": 9,
+      "captions": [
+        {"duration_seconds": 4, "text": "In this case, common control is NOT PROVEN."},
+        {"duration_seconds": 5, "text": "Downstream relationship coverage\nis explicitly marked incomplete."}
+      ]
+    },
+    {
+      "id": "proof",
+      "kind": "proof",
+      "duration_seconds": 21,
+      "captions": [
+        {"duration_seconds": 8, "text": "Real investigations exposed two generic classification and accounting defects.\nBoth were fixed and converted into regression tests."},
+        {"duration_seconds": 5, "text": "The current build passes\n155 Python tests and 16 frontend tests."},
+        {"duration_seconds": 8, "text": "The original case used about 520 estimated provider credits.\nThis replay uses zero provider calls."}
+      ]
+    },
+    {
+      "id": "final",
+      "kind": "final",
+      "duration_seconds": 8,
+      "captions": [
+        {"duration_seconds": 5, "text": "The jeet sold. He really was out.\nThen he came back."},
+        {"duration_seconds": 3, "text": "Jeet caught the whole story."}
+      ]
+    }
+  ]
+}

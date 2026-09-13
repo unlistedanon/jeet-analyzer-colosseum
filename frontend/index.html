@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080b10" />
+    <title>Jeet Analyzer | Solana Wallet Tracing &amp; Linked-Wallet Analysis</title>
+    <meta name="description" content="Jeet Analyzer traces Solana token movements and linked wallets, separates historical exit from re-entry, and reports control-risk evidence with explicit coverage limits." />
+    <link rel="canonical" href="https://jeet.example/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Jeet Analyzer | Solana Wallet Tracing &amp; Linked-Wallet Analysis" />
+    <meta property="og:description" content="Jeet Analyzer traces Solana token movements and linked wallets, separates historical exit from re-entry, and reports control-risk evidence with explicit coverage limits." />
+    <meta property="og:url" content="https://jeet.example/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Jeet Analyzer | Solana Wallet Tracing" />
+    <meta name="twitter:description" content="Jeet Analyzer traces Solana token movements and linked wallets, separates historical exit from re-entry, and reports control-risk evidence with explicit coverage limits." />
+    <link rel="stylesheet" href="/search-info.css" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://jeet.example/#website", "name": "Jeet Analyzer", "url": "https://jeet.example/"}, {"@type": "WebApplication", "@id": "https://jeet.example/#application", "name": "Jeet Analyzer", "url": "https://jeet.example/", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web browser", "description": "Jeet Analyzer traces Solana token movements and linked wallets, separates historical exit from re-entry, and reports control-risk evidence with explicit coverage limits."}]}</script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <section class="search-info" aria-labelledby="about-jeet">
+      <p class="search-kicker">READ-ONLY SOLANA FORENSICS</p>
+      <h2 id="about-jeet">What is Jeet Analyzer?</h2>
+      <p>Jeet Analyzer is a Solana wallet-tracing and linked-wallet analysis tool. It examines observed target-token movements, balances and transaction evidence to help answer whether a wallet sold, transferred, retained or reacquired tokens.</p>
+      <p>A visible sale is one event, not proof that an entire related-wallet cluster is out. We separate the root wallet’s status, linked-wallet exposure and the limits of the collected history.</p>
+      <h3>Exit, re-entry and what remains unknown</h3>
+      <p><strong>Verified Out</strong> is a scoped conclusion that depends on sufficient history and inventory reconciliation. <strong>Re-entered</strong> means a verified historical exit was followed by material reacquisition and current holdings. Neither label proves that every potentially connected wallet has been found.</p>
+      <p>Missing pages, bounded scans, unresolved transfers or provider limits can leave a result <strong>INSUFFICIENT_DATA</strong> or <strong>UNRESOLVED</strong>. A finished job is not automatically a complete investigation.</p>
+      <h3>Links are evidence, not identity</h3>
+      <p>Direct token movement, funding and coordination can establish different kinds of links. A SOL transfer alone is not target-token movement or proof of common ownership. Control-risk assessments describe evidence patterns; <strong>COMMON_CONTROL=NOT_PROVEN</strong> remains distinct from an assessment of likely control.</p>
+      <p>Investigations are read-only. They do not sign or submit trades, identify a human owner or guarantee a token is safe. Optional membership payment is a separate action from forensic analysis.</p>
+      <p><a href="/methodology/">Read the methodology, status definitions and FAQs →</a></p>
+      <noscript><p>The interactive analyzer needs JavaScript. This explanation and the methodology page are fully readable without it.</p></noscript>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Python package and test dependencies
+        run: python -m pip install -e ".[ui,test]"
+
+      - name: Validate Python dependency consistency
+        run: python -m pip check
+
+      - name: Python regression suite
+        run: python -m pytest -q
+
+      - name: Offline flagship replay
+        run: python scripts/demo_flagship.py
+
+      - name: Build sanitized external-review package
+        run: python scripts/build_external_review.py
+
+      - name: Python dependency vulnerability audit
+        run: |
+          python -m pip install pip-audit
+          python -m pip_audit
+
+      - name: Python static security audit
+        run: |
+          python -m pip install bandit
+          # B608 is separately reviewed: beta_store builds only column fragments
+          # from fixed internal literals and parameterizes every data value.
+          bandit -r jeet_analyzer jeet_analyzer_api -ll -q -s B608
+          bandit scripts/generate_beta_codes.py scripts/build_external_review.py -ll -q
+
+      - name: PowerShell host-script syntax
+        shell: pwsh
+        run: |
+          $failed = $false
+          Get-ChildItem scripts -Filter '*.ps1' | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile(
+              $_.FullName,
+              [ref]$tokens,
+              [ref]$errors
+            ) | Out-Null
+            if ($errors.Count -gt 0) {
+              $failed = $true
+              Write-Host "PowerShell parse errors in $($_.FullName):"
+              $errors | ForEach-Object { Write-Host "  $($_.Message)" }
+            }
+          }
+          if ($failed) { throw 'PowerShell syntax validation failed.' }
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Frontend dependency vulnerability audit
+        working-directory: frontend
+        run: npm audit --audit-level=high
+
+      - name: Frontend regression suite
+        working-directory: frontend
+        run: npm test
+
+      - name: Production frontend build
+        working-directory: frontend
+        run: npm run build

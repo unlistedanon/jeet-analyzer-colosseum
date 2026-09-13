@@ -1,0 +1,39 @@
+services:
+  jeet-beta:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    init: true
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    volumes:
+      - jeet-beta-data:/data
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - .env
+    environment:
+      JEET_BETA_DATA_DIR: /data
+      JEET_BETA_DB_PATH: /data/jeet-beta.sqlite3
+      JEET_BETA_OUTPUT_DIR: /data/investigations
+      JEET_BETA_FRONTEND_DIST: /app/frontend/dist
+      JEET_BETA_ALLOWED_HOSTS: ${JEET_BETA_ALLOWED_HOSTS:-jeet.example,127.0.0.1,localhost}
+      JEET_BETA_PUBLIC_ORIGIN: ${JEET_BETA_PUBLIC_ORIGIN:-https://jeet.example}
+      JEET_BETA_INVITE_LOGIN_FAILURES: ${JEET_BETA_INVITE_LOGIN_FAILURES:-10}
+      JEET_BETA_ADMIN_LOGIN_FAILURES: ${JEET_BETA_ADMIN_LOGIN_FAILURES:-5}
+      JEET_BETA_LOGIN_WINDOW_SECONDS: ${JEET_BETA_LOGIN_WINDOW_SECONDS:-300}
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=3).read()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+volumes:
+  jeet-beta-data:

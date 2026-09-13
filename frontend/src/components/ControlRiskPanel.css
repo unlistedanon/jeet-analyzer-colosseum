@@ -1,0 +1,219 @@
+.control-risk-panel {
+  border-color: rgba(94, 232, 213, .28);
+  background: linear-gradient(145deg, rgba(15, 25, 30, .99), rgba(10, 15, 20, .99));
+}
+
+.control-proof-boundary {
+  padding: 7px 9px;
+  border: 1px solid rgba(94, 232, 213, .35);
+  color: var(--cyan);
+  font: 800 9px/1 ui-monospace, monospace;
+  letter-spacing: .08em;
+}
+
+.control-risk-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  border: 1px solid var(--line);
+  background: var(--line);
+}
+
+.control-risk-metrics article {
+  min-height: 150px;
+  padding: 17px;
+  background: #0a1015;
+}
+
+.control-risk-metrics article > svg {
+  color: var(--cyan);
+}
+
+.control-risk-metrics small {
+  display: block;
+  margin-top: 16px;
+  min-height: 24px;
+  color: var(--subtle);
+  font: 800 8px/1.35 ui-monospace, monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.control-risk-metrics strong {
+  display: block;
+  margin-top: 7px;
+  color: var(--ink);
+  font: 900 27px/1 ui-monospace, monospace;
+  letter-spacing: -.03em;
+}
+
+.control-risk-metrics span {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.control-risk-metrics .control-risk-hot {
+  background: linear-gradient(145deg, rgba(255, 174, 93, .08), #0a1015);
+}
+
+.control-risk-metrics .control-risk-hot > svg,
+.control-risk-metrics .control-risk-hot > strong {
+  color: var(--orange);
+}
+
+.control-risk-inventory-line {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7px 20px;
+  margin-top: 12px;
+  padding: 16px 18px;
+  border: 1px solid rgba(217, 255, 98, .24);
+  background: rgba(217, 255, 98, .025);
+}
+
+.control-risk-inventory-line > span {
+  color: var(--muted);
+  font: 800 9px/1.3 ui-monospace, monospace;
+  letter-spacing: .08em;
+}
+
+.control-risk-inventory-line > strong {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  align-self: center;
+  color: var(--accent);
+  font: 900 24px/1 ui-monospace, monospace;
+}
+
+.control-risk-inventory-line > small {
+  color: var(--subtle);
+  font-size: 10px;
+}
+
+.control-pair-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.control-pair {
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: #0a0f14;
+}
+
+.control-pair-hot {
+  border-color: rgba(255, 174, 93, .48);
+  background: linear-gradient(145deg, rgba(255, 174, 93, .055), #0a0f14);
+}
+
+.control-pair-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.control-pair-addresses {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 7px;
+  color: var(--cyan);
+}
+
+.control-pair-addresses > span {
+  color: var(--subtle);
+}
+
+.control-pair-badges {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.control-pair-badges span,
+.control-pair-badges strong,
+.control-evidence-chips span {
+  padding: 5px 7px;
+  border: 1px solid var(--line-bright);
+  font: 800 8px/1 ui-monospace, monospace;
+  letter-spacing: .05em;
+}
+
+.control-pair-badges span {
+  color: var(--cyan);
+}
+
+.control-pair-badges strong {
+  color: var(--accent);
+}
+
+.control-pair-hot .control-pair-badges strong {
+  border-color: rgba(255, 174, 93, .48);
+  color: var(--orange);
+}
+
+.control-pair > p {
+  margin: 14px 0 10px;
+  color: #cbd4d5;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.control-pair > small {
+  display: block;
+  margin-top: 11px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.control-evidence-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.control-evidence-chips span {
+  color: var(--muted);
+}
+
+.control-risk-empty {
+  margin: 14px 0 0;
+}
+
+@media (max-width: 1020px) {
+  .control-risk-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 740px) {
+  .control-risk-metrics,
+  .control-pair-list,
+  .control-risk-inventory-line {
+    grid-template-columns: 1fr;
+  }
+
+  .control-risk-inventory-line > strong {
+    grid-row: auto;
+    grid-column: auto;
+  }
+
+  .control-pair-head,
+  .control-pair-addresses {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .control-pair-badges {
+    align-items: flex-start;
+  }
+}
