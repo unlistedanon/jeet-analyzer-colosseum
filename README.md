@@ -118,3 +118,15 @@ See [commands](docs/COMMANDS.md), [cost protection](docs/COST_PROTECTION.md),
 provide an open-source license or permission to copy, modify, distribute, sell or use
 the software beyond the copyright holder's written permission. The existing
 [LICENSE](LICENSE) is unchanged.
+
+
+## Repository and license boundary
+
+This is the public evaluation snapshot of Jeet Analyzer. Canonical development
+is maintained separately in a private repository. This snapshot may lag active
+development; its history does not represent the full development history.
+
+Public visibility grants no additional usage rights. The existing [LICENSE](LICENSE)
+reserves all rights and provides this source for evaluation and review. Copying,
+modification, distribution and other use require the copyright holder's written
+permission. This repository is not offered under an open-source license.

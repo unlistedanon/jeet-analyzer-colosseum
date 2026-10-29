@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from collections import deque
 from dataclasses import dataclass, field
+import ipaddress
 import threading
 import time
 from typing import Callable
@@ -67,15 +68,21 @@ class FailedAttemptLimiter:
             self._events.pop(key, None)
 
 
-def client_key(request: Request) -> str:
-    """Return Cloudflare's client IP when available, otherwise the socket peer."""
+def client_key(request: Request, trusted_proxy_cidrs: tuple[str, ...] = ()) -> str:
+    """Trust forwarded client IPs only from explicitly configured socket peers."""
 
-    cloudflare_ip = request.headers.get("cf-connecting-ip", "").strip()
-    if cloudflare_ip and len(cloudflare_ip) <= 64:
-        return cloudflare_ip
-    if request.client and request.client.host:
-        return request.client.host[:64]
-    return "unknown"
+    peer = request.client.host if request.client else "unknown"
+    try:
+        peer_ip = ipaddress.ip_address(peer)
+        trusted = any(peer_ip in ipaddress.ip_network(cidr) for cidr in trusted_proxy_cidrs)
+    except ValueError:
+        trusted = False
+    if trusted:
+        try:
+            return str(ipaddress.ip_address(request.headers.get("cf-connecting-ip", "").strip()))
+        except ValueError:
+            pass
+    return peer[:64]
 
 
 def normalized_host(request: Request) -> str:
@@ -163,7 +170,7 @@ class HostedBetaSecurityMiddleware(BaseHTTPMiddleware):
         elif request.method == "POST" and path == self._admin_login_path:
             limiter = self.admin_limiter
 
-        key = client_key(request)
+        key = client_key(request, self.config.trusted_proxy_cidrs)
         if limiter is not None:
             allowed, retry_after = limiter.check(key)
             if not allowed:

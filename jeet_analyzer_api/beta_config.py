@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import hashlib
+import ipaddress
 import os
 from pathlib import Path
 
@@ -85,8 +86,11 @@ class BetaConfig:
     invite_login_failures: int = 10
     admin_login_failures: int = 5
     login_window_seconds: int = 300
+    trusted_proxy_cidrs: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
+        for network in self.trusted_proxy_cidrs:
+            ipaddress.ip_network(network)
         if self.global_daily_credit_cap < self.max_estimated_credits_per_run:
             raise ValueError(
                 "JEET_BETA_GLOBAL_DAILY_CREDIT_CAP must cover one investigation ceiling"
@@ -133,6 +137,7 @@ class BetaConfig:
             materiality_inventory_pct=float(os.environ.get("JEET_BETA_MATERIALITY_INVENTORY_PCT", "0.01")),
             deep_forensic=_boolean("JEET_BETA_DEEP_FORENSIC", True),
             allowed_hosts=_csv("JEET_BETA_ALLOWED_HOSTS"),
+            trusted_proxy_cidrs=_csv("JEET_BETA_TRUSTED_PROXY_CIDRS"),
             public_origin=public_origin,
             invite_login_failures=_integer("JEET_BETA_INVITE_LOGIN_FAILURES", 10),
             admin_login_failures=_integer("JEET_BETA_ADMIN_LOGIN_FAILURES", 5),
