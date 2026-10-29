@@ -5,6 +5,8 @@ import unittest
 from pathlib import Path
 
 from fastapi.testclient import TestClient
+from starlette.requests import Request
+from jeet_analyzer_api.security import client_key
 
 from jeet_analyzer_api.beta_auth import BETA_COOKIE, MAX_SESSION_TOKEN_LENGTH, read_session
 from jeet_analyzer_api.secure_app import create_secure_app
@@ -73,7 +75,7 @@ class HostedBetaSecurityGateTests(unittest.TestCase):
             )
             self.assertEqual(accepted.status_code, 200)
 
-    def test_failed_invite_logins_are_throttled_per_cloudflare_client_ip(self):
+    def test_spoofed_cloudflare_ip_cannot_bypass_login_throttle(self):
         client, _ = self.client(invite_login_failures=2, login_window_seconds=300)
         headers = {"cf-connecting-ip": "203.0.113.8"}
         with client:
@@ -88,7 +90,20 @@ class HostedBetaSecurityGateTests(unittest.TestCase):
                 json={"access_code": INVITE},
                 headers={"cf-connecting-ip": "203.0.113.9"},
             )
-            self.assertEqual(other_ip.status_code, 200)
+            self.assertEqual(other_ip.status_code, 429)
+
+
+    def test_forwarded_ip_requires_trusted_socket_peer(self):
+        def request(peer, header):
+            return Request({"type": "http", "client": (peer, 1234),
+                            "headers": [(b"cf-connecting-ip", header.encode())]})
+        trusted = ("127.0.0.1/32", "::1/128")
+        self.assertEqual(client_key(request("198.51.100.1", "203.0.113.8"), trusted), "198.51.100.1")
+        self.assertEqual(client_key(request("127.0.0.1", "203.0.113.8")), "127.0.0.1")
+        self.assertEqual(client_key(request("127.0.0.1", "203.0.113.8"), trusted), "203.0.113.8")
+        self.assertEqual(client_key(request("::1", "2001:db8::1"), trusted), "2001:db8::1")
+        for header in ("invalid", "203.0.113.8, 203.0.113.9", ""):
+            self.assertEqual(client_key(request("127.0.0.1", header), trusted), "127.0.0.1")
 
     def test_admin_login_has_independent_stricter_throttle(self):
         client, _ = self.client(admin_login_failures=1, login_window_seconds=300)

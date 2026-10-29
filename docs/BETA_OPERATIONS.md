@@ -228,3 +228,15 @@ available when reference lookup is insufficient. This app never signs or submits
 transactions. To pause new payments, set `JEET_SOL_PAYMENTS_ENABLED=0` in the
 launching process environment before restarting; existing payments can still be
 verified and purchased terms remain available.
+
+
+### Forwarded client addresses
+
+`CF-Connecting-IP` is ignored by default. Set `JEET_BETA_TRUSTED_PROXY_CIDRS`
+only to the socket addresses of your controlled proxy (for a same-host
+Cloudflare tunnel, `127.0.0.1/32,::1/128`). The proxy must overwrite that header
+and the origin must remain inaccessible to untrusted peers. Do not trust an
+entire shared network. Start Uvicorn with `--no-proxy-headers` so this check sees
+the actual socket peer rather than a rewritten `X-Forwarded-For` value.
+Without explicit proxy trust, login limits apply to the socket peer and users
+behind one proxy share its limit.
