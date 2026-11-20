@@ -1,6 +1,20 @@
 # Jeet Analyzer
 
-**The jeet sold—but are they really out? A sell does not necessarily mean an exit.**
+![Jeet Analyzer — 1337 Gang Solana wallet forensics](assets/jeet-analyzer-github.svg)
+
+<p align="center"><strong>The jeet sold. But are they really out?</strong><br/>
+Read-only Solana wallet-flow forensics. Evidence first. Unknowns stay unknown.</p>
+
+<p align="center">
+<a href="#install-and-replay-offline"><strong>Try the offline demo</strong></a> ·
+<a href="REVIEWER_START_HERE.md">Reviewer guide</a> ·
+<a href="docs/EVIDENCE_MODEL.md">Evidence model</a> ·
+<a href="#license">Reuse rights</a>
+</p>
+
+> **Public evaluation snapshot — proprietary, not open source.** The source can be reviewed, but the repository's license does not grant general rights to copy, redistribute, or reuse it. The local demo is not evidence of live provider, Telegram, or payment readiness.
+
+---
 
 In the trenches, a sell alert or an empty wallet can look like the whole story.
 Tokens may still sit in related wallets, move through settlement infrastructure, or

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="520" viewBox="0 0 1440 520" role="img" aria-label="Jeet Analyzer - read-only Solana wallet forensics with evidence-backed investigations">
+<defs>
+<linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#070d1b"/><stop offset=".6" stop-color="#151027"/><stop offset="1" stop-color="#090d1d"/></linearGradient>
+<linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#66e9ff"/><stop offset=".55" stop-color="#8b6dff"/><stop offset="1" stop-color="#ff6eba"/></linearGradient>
+<pattern id="g" width="35" height="35" patternUnits="userSpaceOnUse"><path d="M35 0H0V35" stroke="#2e4164" stroke-width="1" fill="none" opacity=".5"/></pattern>
+</defs>
+<rect width="1440" height="520" fill="url(#b)"/><rect width="1440" height="520" fill="url(#g)" opacity=".48"/>
+<path d="M55 41H1382" stroke="url(#a)" stroke-width="3"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="70" y="115" font-size="17" fill="#7eecff" font-weight="700" letter-spacing="4">1337 GANG // ON-CHAIN RESEARCH</text>
+<text x="62" y="227" font-size="85" fill="#ffffff" font-weight="900" letter-spacing="-3">Jeet Analyzer</text>
+<text x="69" y="281" font-size="26" fill="#c2cdee">Did they sell—or are they actually out?</text>
+<text x="69" y="328" font-size="20" fill="#9aadd1">Solana wallet-flow forensics with evidence and uncertainty.</text>
+<rect x="70" y="362" width="321" height="52" rx="12" fill="#28182f" stroke="#e77ac6" stroke-width="2"/>
+<text x="89" y="394" font-size="17" font-weight="700" fill="#ffa4de">PUBLIC EVALUATION SNAPSHOT</text>
+<text x="70" y="474" font-size="16" letter-spacing="1" fill="#86a5c4">READ-ONLY  ·  OFFLINE DEMO  ·  NO TRADE EXECUTION</text>
+<g transform="translate(850 84)">
+<rect x="-20" y="0" width="507" height="340" rx="19" fill="#131b33" stroke="#596d91" stroke-width="2"/>
+<text x="12" y="41" font-size="16" fill="#92aad5" letter-spacing="3">EVIDENCE FLOW</text>
+<g fill="none" stroke-width="4" stroke-linecap="round"><path d="M65 108H191" stroke="#51dbea"/><path d="M262 108H391" stroke="#9a79ff"/><path d="M229 143V232" stroke="#b97fff"/><path d="M229 232H375" stroke="#f06cbe"/></g>
+<g stroke-width="3"><rect x="16" y="82" width="109" height="55" rx="12" fill="#112d3a" stroke="#50d7eb"/><rect x="173" y="82" width="107" height="55" rx="12" fill="#242246" stroke="#9c76ff"/><rect x="359" y="82" width="111" height="55" rx="12" fill="#312039" stroke="#f575c5"/><rect x="168" y="232" width="258" height="70" rx="12" fill="#152d36" stroke="#64d9d6"/></g>
+<text x="35" y="115" font-size="17" font-weight="700" fill="#d5faff">SELL</text>
+<text x="194" y="115" font-size="17" font-weight="700" fill="#e9dfff">TRACE</text>
+<text x="378" y="115" font-size="17" font-weight="700" fill="#ffe0f5">RECHECK</text>
+<text x="188" y="259" font-size="16" font-weight="700" fill="#93f0e8">CLUSTER STATUS</text>
+<text x="188" y="286" font-size="18" font-weight="700" fill="#ffffff">NOT_OUT</text>
+<text x="12" y="329" font-size="14" fill="#9badc8">A related wallet is not proof of common control.</text>
+</g>
+</g>
+</svg>
