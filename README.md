@@ -16,8 +16,6 @@ Read-only Solana wallet-flow forensics. Evidence first. Unknowns stay unknown.</
 
 ---
 
-**The jeet sold—but are they really out? A sell does not necessarily mean an exit.**
-
 In the trenches, a sell alert or an empty wallet can look like the whole story.
 Tokens may still sit in related wallets, move through settlement infrastructure, or
 be reacquired later. Jeet Analyzer investigates the observed Solana evidence and
